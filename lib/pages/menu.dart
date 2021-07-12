@@ -1,3 +1,4 @@
+import 'package:f_verhalten/pages/cronometro.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,6 +8,11 @@ void main() {
 class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    void _irParaCronometro() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Cronometro()));
+    }
+
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -16,7 +22,13 @@ class MenuPage extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
           child: Center(
-            child: Text("Menu"),
+            child: OutlinedButton(
+                onPressed: () => _irParaCronometro(),
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                ),
+                child: Text('Cronômetro')),
           ),
         ),
       ),

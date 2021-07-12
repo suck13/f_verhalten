@@ -3,9 +3,9 @@ import 'home.dart';
 import 'menu.dart';
 import 'settings.dart';
 
-void main() {
-  runApp(IndexPage());
-}
+// void main() {
+//   runApp(IndexPage());
+// }
 
 class IndexPage extends StatefulWidget {
   @override
@@ -24,30 +24,25 @@ class IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      home: Scaffold(
-        body: _widgetOptions[_indiceAtual],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _indiceAtual,
-          onTap: onTabTapped,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.menu),
-              label: "Menu Page",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home Page",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: "Settings Page",
-            ),
-          ],
-        ),
+    return Scaffold(
+      body: _widgetOptions[_indiceAtual],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _indiceAtual,
+        onTap: onTabTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu),
+            label: "Menu Page",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home Page",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings Page",
+          ),
+        ],
       ),
     );
   }
