@@ -2,15 +2,13 @@
 
 A new Flutter project.
 
-## Getting Started
+## Funcionalidades:
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[] Tela de cadastro.
+[] Tela de login.
+[] Menu para organização das telas de funcionalidades.
+  [] Link para a tela de cronômetro.
+  [] Link para a tela de anotações.
+[] Calendário para organização da pessoa.
+[] Cronômetro para que o usuário consiga aumentar sua produtividade.
+[] Lembretes para que o usuário possa criar um cronograma do seu dia a dia .
