@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'menu.dart';
-import 'settings.dart';
-
-// void main() {
-//   runApp(IndexPage());
-// }
+import 'package:f_verhalten/pages/menu.dart';
+import 'package:f_verhalten/pages/sobre.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -15,11 +10,10 @@ class IndexPage extends StatefulWidget {
 }
 
 class IndexPageState extends State<IndexPage> {
-  int _indiceAtual = 1;
+  int _indiceAtual = 0;
   final List<Widget> _widgetOptions = [
     MenuPage(),
-    HomePage(),
-    SettingsPage(),
+    SobrePage(),
   ];
 
   @override
@@ -32,15 +26,11 @@ class IndexPageState extends State<IndexPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.menu),
-            label: "Menu Page",
+            label: "Inicial",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home Page",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings Page",
+            icon: Icon(Icons.person_pin),
+            label: "Sobre",
           ),
         ],
       ),
@@ -48,8 +38,10 @@ class IndexPageState extends State<IndexPage> {
   }
 
   void onTabTapped(int index) {
-    setState(() {
+    setState(
+      () {
       _indiceAtual = index;
-    });
+      },
+    );
   }
 }
