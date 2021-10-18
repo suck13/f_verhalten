@@ -1,6 +1,3 @@
-import 'package:f_verhalten/pages/cronometro.dart';
-import 'package:f_verhalten/pages/home.dart';
-import 'package:f_verhalten/pages/settings.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:splashscreen/splashscreen.dart';
@@ -14,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
@@ -74,7 +72,7 @@ class SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Image.asset(
-                    'lib/assets/images/logo-dark.jpg',
+                    'lib/assets/images/logo-dark.png',
                     width: 375,
                     height: 375,
                   ),
