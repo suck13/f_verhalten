@@ -9,3 +9,6 @@ A new Flutter project.
     [] Cronômetro junto da tela de anotações.
 [] Cronômetro para que o usuário consiga aumentar sua produtividade.
 [] Lembretes para que o usuário possa criar um cronograma do seu dia a dia .
+
+## Execução:
+  No terminal/cmd digite: "flutter run --no-sound-null-safety".
