@@ -21,11 +21,13 @@ class _OtpTimerState extends State<OtpTimer> {
   startTimeout([int? milliseconds]) {
     var duration = interval;
     Timer.periodic(duration, (timer) {
-      setState(() {
-        print(timer.tick);
-        currentSeconds = timer.tick;
-        if (timer.tick >= timerMaxSeconds) timer.cancel();
-      });
+      if (this.mounted) {
+        setState(() {
+          print(timer.tick);
+          currentSeconds = timer.tick;
+          if (timer.tick >= timerMaxSeconds) timer.cancel();
+        });
+      }
     });
   }
 
