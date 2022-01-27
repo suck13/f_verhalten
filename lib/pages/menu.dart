@@ -1,5 +1,4 @@
 import 'package:f_verhalten/pages/notes.dart';
-import 'package:f_verhalten/pages/timer.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,14 +13,6 @@ class MenuPage extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => NotesPage(),
-        ),
-      );
-    }    
-    void _irParaCronometro() {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => OtpTimer(),
         ),
       );
     }
@@ -45,16 +36,6 @@ class MenuPage extends StatelessWidget {
                       MaterialStateProperty.all<Color>(Colors.blue),
                 ),
                 child: Text('Anotações'),
-              ),
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () => _irParaCronometro(),
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
-                  ),
-                  child: Text('Cronômetro'),
-                ),
               ),
             ],
           ),
