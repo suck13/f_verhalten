@@ -38,10 +38,10 @@ class IndexPageState extends State<IndexPage> {
   }
 
   void onTabTapped(int index) {
-    setState(
-      () {
-      _indiceAtual = index;
-      },
-    );
+    if (this.mounted) {
+      setState(() {
+        _indiceAtual = index;
+      });
+    }
   }
 }
