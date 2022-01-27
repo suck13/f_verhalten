@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:f_verhalten/models/notes_page.dart';
+import 'package:f_verhalten/pages/timer.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:auto_size_text/auto_size_text.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class NotesPage extends StatefulWidget {
   NotesPage({Key? key}) : super(key: key);
@@ -30,14 +33,16 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: notesHeader(),
       ),
       body: noteHeading.length > 0
           ? buildNotes()
-          : Center(child: Text("Adicionar Anotações")),
+          : Center(
+              child: Text("Adicionar Anotações"),
+            ),
       floatingActionButton: FloatingActionButton(
         mini: false,
         backgroundColor: Colors.redAccent,
@@ -61,102 +66,76 @@ class _NotesPageState extends State<NotesPage> {
         itemBuilder: (context, int index) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 5.5),
-            child: new Dismissible(
+            child: Slidable(
               key: UniqueKey(),
-              direction: DismissDirection.horizontal,
-              onDismissed: (direction) {
-                setState(() {
-                  deletedNoteHeading = noteHeading[index];
-                  deletedNoteDescription = noteDescription[index];
-                  noteHeading.removeAt(index);
-                  noteDescription.removeAt(index);
-                  // ignore: deprecated_member_use
-                  Scaffold.of(context).showSnackBar(
-                    new SnackBar(
-                      backgroundColor: Colors.purple,
-                      content: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          new Text(
-                            "Anotação Deletada",
-                            style: TextStyle(),
+              actionPane: SlidableScrollActionPane(),
+              actions: [
+                IconSlideAction(
+                  caption: "Deletar",
+                  color: Colors.redAccent,
+                  icon: Icons.delete,
+                  onTap: () {
+                    if (this.mounted) {
+                      setState(() {
+                        deletedNoteHeading = noteHeading[index];
+                        deletedNoteDescription = noteDescription[index];
+                        noteHeading.removeAt(index);
+                        noteDescription.removeAt(index);
+                        // ignore: deprecated_member_use
+                        Scaffold.of(context).showSnackBar(
+                          new SnackBar(
+                            backgroundColor: Colors.purple,
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                new Text(
+                                  "Anotação Deletada",
+                                  style: TextStyle(),
+                                ),
+                                deletedNoteHeading != ""
+                                    ? GestureDetector(
+                                        onTap: () {
+                                          print("Desfazer");
+                                          if (this.mounted) {
+                                            setState(() {
+                                              if (deletedNoteHeading != "") {
+                                                noteHeading
+                                                    .add(deletedNoteHeading);
+                                                noteDescription.add(
+                                                    deletedNoteDescription);
+                                              }
+                                              deletedNoteHeading = "";
+                                              deletedNoteDescription = "";
+                                            });
+                                          }
+                                        },
+                                        child: new Text(
+                                          "Desfazer",
+                                          style: TextStyle(),
+                                        ),
+                                      )
+                                    : SizedBox(),
+                              ],
+                            ),
                           ),
-                          deletedNoteHeading != ""
-                              ? GestureDetector(
-                                  onTap: () {
-                                    print("Desfazer");
-                                    setState(() {
-                                      if (deletedNoteHeading != "") {
-                                        noteHeading.add(deletedNoteHeading);
-                                        noteDescription
-                                            .add(deletedNoteDescription);
-                                      }
-                                      deletedNoteHeading = "";
-                                      deletedNoteDescription = "";
-                                    });
-                                  },
-                                  child: new Text(
-                                    "Desfazer",
-                                    style: TextStyle(),
-                                  ),
-                                )
-                              : SizedBox(),
-                        ],
-                      ),
-                    ),
-                  );
-                });
-              },
-              background: ClipRRect(
-                borderRadius: BorderRadius.circular(5.5),
-                child: Container(
-                  color: Colors.green,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "Deletar",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                        );
+                      });
+                    }
+                  },
                 ),
-              ),
-              secondaryBackground: ClipRRect(
-                borderRadius: BorderRadius.circular(5.5),
-                child: Container(
-                  color: Colors.red,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "Deletar",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
+                IconSlideAction(
+                  caption: "Cronômetro",
+                  color: Colors.greenAccent,
+                  icon: Icons.timer,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => OtpTimer(),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
-              ),
+              ],
               child: noteList(index),
             ),
           );
@@ -270,13 +249,15 @@ class _NotesPageState extends State<NotesPage> {
                           GestureDetector(
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
-                                setState(() {
-                                  noteHeading.add(noteHeadingController.text);
-                                  noteDescription
-                                      .add(noteDescriptionController.text);
-                                  noteHeadingController.clear();
-                                  noteDescriptionController.clear();
-                                });
+                                if (this.mounted) {
+                                  setState(() {
+                                    noteHeading.add(noteHeadingController.text);
+                                    noteDescription
+                                        .add(noteDescriptionController.text);
+                                    noteHeadingController.clear();
+                                    noteDescriptionController.clear();
+                                  });
+                                }
                                 Navigator.pop(context);
                               }
                               print("Notes.dart LineNo:239");
