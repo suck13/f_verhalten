@@ -32,8 +32,7 @@ class MenuPage extends StatelessWidget {
               OutlinedButton(
                 onPressed: () => _irParaAnotacoes(),
                 style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
                 ),
                 child: Text('Anotações'),
               ),
