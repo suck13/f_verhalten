@@ -270,7 +270,7 @@ class _NotesPageState extends State<NotesPage> {
                                     "Salvar",
                                     style: TextStyle(
                                       fontSize: 20.00,
-                                      color: Colors.blue,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -281,7 +281,7 @@ class _NotesPageState extends State<NotesPage> {
                         ],
                       ),
                       Divider(
-                        color: Colors.blueAccent,
+                        color: Colors.red,
                         thickness: 2.5,
                       ),
                       TextFormField(
@@ -362,14 +362,10 @@ Widget notesHeader() {
         Text(
           "Minhas Anotações",
           style: TextStyle(
-            color: Colors.blueAccent,
+            color: Colors.redAccent,
             fontSize: 25.00,
             fontWeight: FontWeight.w500,
           ),
-        ),
-        Divider(
-          color: Colors.blueAccent,
-          thickness: 2.5,
         ),
       ],
     ),
