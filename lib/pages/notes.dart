@@ -82,7 +82,7 @@ class _NotesPageState extends State<NotesPage> {
                         noteHeading.removeAt(index);
                         noteDescription.removeAt(index);
                         // ignore: deprecated_member_use
-                        Scaffold.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           new SnackBar(
                             backgroundColor: Colors.purple,
                             content: Row(
